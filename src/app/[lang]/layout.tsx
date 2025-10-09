@@ -1,15 +1,26 @@
 import type { Metadata } from "next";
 import { globalFont } from "@/config/fonts";
+import { I18nProvider, ThemeProvider, TrpcProvider } from "@/lib/providers";
+import { Toaster } from "@/shared/components";
 import "@/globals.css";
 
 interface RootLayoutProps extends Children {
   params: Promise<{ lang: string }>;
 }
 
-export default async function RootLayout({ children }: Readonly<RootLayoutProps>) {
+export default async function RootLayout({ children, params }: Readonly<RootLayoutProps>) {
+  const { lang } = await params;
+
   return (
-    <html lang="en">
-      <body className={`${globalFont.className} antialiased`}>{children}</body>
+    <html lang={lang} suppressHydrationWarning>
+      <body className={`${globalFont.className} antialiased`}>
+        <I18nProvider>
+          <ThemeProvider>
+            <TrpcProvider>{children}</TrpcProvider>
+            <Toaster position="top-right" />
+          </ThemeProvider>
+        </I18nProvider>
+      </body>
     </html>
   );
 }
