@@ -5,4 +5,6 @@ declare module "next-intl" {
     Messages: LangEn;
     Locale: (typeof routing.locales)[number];
   }
+  type Message = keyof LangEn["messages"];
+  type Validation = keyof LangEn["validation"];
 }

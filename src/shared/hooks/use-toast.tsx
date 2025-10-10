@@ -18,16 +18,13 @@ export const useToast = () => {
   const t = useTranslations("messages");
 
   return (message: string, type: ToastType = "success") => {
-    const i18nMessage = t(message as any);
-    const [title, description] = i18nMessage.split(":");
-
-    Sonner(title || "LeadEdge AI", {
+    Sonner("LeadEdge AI", {
       /* @ts-ignore */
-      description: `${description}` || "LeadEdge AI notification message",
+      description: t(`${message}`) || "LeadEdge AI notification message",
       dismissible: true,
       classNames: {
         title: "font-medium ml-2 text-sm",
-        description: "text-foreground-muted text-2xs ml-2",
+        description: "text-foreground-muted text-xs ml-2",
       },
       icon: (
         <div className={cn("flex size-7 items-center justify-center rounded-full", toastType[type].className)}>

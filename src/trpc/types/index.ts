@@ -1,7 +1,9 @@
+import { Message } from "next-intl";
+
 declare global {
   interface TRPCResponse<T> {
     result: T | null;
-    message: string | null;
+    message: Message | null;
     status: "success" | "error";
   }
 }
