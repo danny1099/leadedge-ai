@@ -67,5 +67,9 @@
       "text": "Don’t have an account yet?",
       "link": "Sign up"
     }
+  },
+  "onboarding": {
+    "title": "Lead it. Live it.",
+    "description": "Your journey as a leader starts here. Lead with vision, live with purpose."
   }
 }

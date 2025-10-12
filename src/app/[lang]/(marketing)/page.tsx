@@ -1,8 +1,9 @@
-import { Navbar, P, Title } from "@/shared/components";
 import { getTranslations } from "next-intl/server";
+import { Navbar, P, Title } from "@/shared/components";
 
 export default async function Home() {
   const t = await getTranslations("marketing");
+
   return (
     <div className="flex h-dvh flex-col">
       <Navbar />

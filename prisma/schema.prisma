@@ -89,7 +89,7 @@ model Organization {
 
   // Relations
   users                User[]
-  organizationSettings OrganizationSettings?
+  OrganizationSettings OrganizationSettings?
   Subscription         Subscription[]
 
   @@index([slug])
@@ -107,7 +107,7 @@ model OrganizationSettings {
   updatedAt      DateTime @updatedAt
 
   // Relations
-  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  Organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@map("organization_settings")
 }
@@ -123,7 +123,7 @@ model Subscription {
   amount         Float
   currency       String             @default("USD")
 
-  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  Organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@index([organizationId])
   @@map("subscriptions")
