@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import { getPrivateRoute } from "@/config/routes";
 import { MenuHeader, MenuGroup, MenuLink } from "@/modules/private/components";
 import { menuLinks } from "@/modules/private/utils";
+import { WorkspaceList } from "@/modules/workspace/components";
 
 export const Menu = () => {
   const params = useParams();
@@ -25,6 +26,7 @@ export const Menu = () => {
           })}
         </ul>
       </MenuGroup>
+      <WorkspaceList />
     </div>
   );
 };

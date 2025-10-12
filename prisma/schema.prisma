@@ -91,6 +91,7 @@ model Organization {
   users                User[]
   OrganizationSettings OrganizationSettings?
   Subscription         Subscription[]
+  Workspace            Workspace[]
 
   @@index([slug])
   @@map("organizations")
@@ -127,6 +128,21 @@ model Subscription {
 
   @@index([organizationId])
   @@map("subscriptions")
+}
+
+model Workspace {
+  id             String   @id @default(cuid())
+  name           String
+  icon           String
+  color          String
+  type           String?
+  status         String
+  members        String[]
+  organizationId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  Organization Organization @relation(fields: [organizationId], references: [id])
 }
 
 enum PlanType {

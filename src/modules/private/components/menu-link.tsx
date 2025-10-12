@@ -23,7 +23,7 @@ export const MenuLink = ({ children, route, icon, className }: Props) => {
       place="start"
       align="start"
       variant="ghost"
-      className={cn("hover:bg-secondary h-9 w-full", isSelected && "bg-secondary text-tertiary border-border border", className )}>
+      className={cn("hover:bg-secondary h-9 w-full", isSelected && "bg-primary/80 text-primary-foreground border-border border", className )}>
       {children}
     </Navlink>
   );
