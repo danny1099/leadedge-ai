@@ -8,8 +8,8 @@ interface Props extends Children {
 
 export const MenuGroup = ({ children, title, className }: Props) => {
   return (
-    <div className={cn("flex h-fit w-full flex-col", className)}>
-      {title && <P className="text-2xs mb-2 ml-9">{title}</P>}
+    <div className={cn("flex h-fit w-full flex-col px-2", className)}>
+      {title && <P className="text-2xs mb-1 ml-3 md:ml-7">{title}</P>}
       {children}
     </div>
   );

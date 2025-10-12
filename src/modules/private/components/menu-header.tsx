@@ -7,7 +7,7 @@ interface Props {
 
 export const MenuHeader = ({ className }: Props) => {
   return (
-    <div className={cn("bg-background flex h-16 w-full items-center px-1 md:px-8", className)}>
+    <div className={cn("bg-background flex h-16 w-full items-center px-4 md:px-8", className)}>
       <Logo withText />
     </div>
   );
