@@ -9,7 +9,18 @@ export const authRouter = router({
     const { email, password } = input;
 
     /* check if user exists with email */
-    const user = await ctx.db.user.findUnique({ where: { email } });
+    const user = await ctx.db.user.findUnique({
+      where: { email },
+      include: {
+        organization: {
+          select: {
+            slug: true,
+            plan: true,
+          },
+        },
+      },
+    });
+
     if (!user) return { result: null, message: "auth/invalid_credentials", status: "error" };
 
     /* check if password is valid compared to user password */
@@ -17,9 +28,14 @@ export const authRouter = router({
     if (!isValidPassword) return { result: null, message: "auth/invalid_credentials", status: "error" };
 
     return {
-      result: user as User,
       message: null,
       status: "success",
+      result: {
+        ...user,
+        role: user.role,
+        slug: user.organization?.slug,
+        plan: user.organization?.plan,
+      } as User,
     };
   }),
 
