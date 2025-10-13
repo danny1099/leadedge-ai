@@ -6,6 +6,8 @@ declare global {
     message: Message | null;
     status: "success" | "error";
   }
+
+  /* zod types shared parameters */
 }
 
 export {};

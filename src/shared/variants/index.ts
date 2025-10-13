@@ -31,12 +31,14 @@ export const ctaVariants = cva(
         ghost: "bg-transparent border-none text-foreground",
         gradient: "bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 text-white",
         link: "text-foreground text-xs font-medium",
+        "in-line": "bg-transparent cursor-pointer text-foreground hover:bg-accent",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-7 rounded-sm p-0.5",
+        tiny: "size-5 rounded-sm p-0.5",
       },
       align: {
         start: "justify-start text-left",

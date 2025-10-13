@@ -26,6 +26,7 @@ model User {
   sessions      Session[]
   authenticator Authenticator[]
   organization  Organization?   @relation(fields: [organizationId], references: [id])
+  Workspace     Workspaces[]
 }
 
 model Account {
@@ -90,11 +91,10 @@ model Organization {
   // Relations
   users                User[]
   OrganizationSettings OrganizationSettings?
-  Subscription         Subscription[]
-  Workspace            Workspace[]
+  Subscription         Subscriptions[]
+  Workspace            Workspaces[]
 
   @@index([slug])
-  @@map("organizations")
 }
 
 model OrganizationSettings {
@@ -109,11 +109,9 @@ model OrganizationSettings {
 
   // Relations
   Organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-
-  @@map("organization_settings")
 }
 
-model Subscription {
+model Subscriptions {
   id             String             @id @default(cuid())
   organizationId String
   plan           PlanType
@@ -127,22 +125,23 @@ model Subscription {
   Organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@index([organizationId])
-  @@map("subscriptions")
 }
 
-model Workspace {
-  id             String   @id @default(cuid())
+model Workspaces {
+  id             String        @id @default(cuid())
   name           String
   icon           String
   color          String
-  type           String?
+  type           WorkspaceType @default(EDUCATION)
   status         String
   members        String[]
   organizationId String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  userId         String
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 
   Organization Organization @relation(fields: [organizationId], references: [id])
+  user         User         @relation(fields: [userId], references: [id])
 }
 
 enum PlanType {
@@ -170,4 +169,10 @@ enum BillingCycle {
   MONTHLY
   QUARTERLY
   ANNUAL
+}
+
+enum WorkspaceType {
+  BUSINESS
+  EDUCATION
+  NONPROFIT
 }

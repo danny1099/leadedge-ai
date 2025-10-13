@@ -1,1 +1,2 @@
-export * from './workspace-list';
+export * from "./workspace-list-skeleton";
+export * from "./workspace-list";

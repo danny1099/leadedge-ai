@@ -6,8 +6,8 @@ export const publicRoutes = {
 
 export const privateRoutes = {
   ONBOARDING: "/private/onboarding",
-  OVERVIEW: "/private/ws/:account/overview",
-  WORKSPACES: "/private/ws/:account/spaces/",
+  OVERVIEW: "/private/t/:account/overview",
+  WORKSPACES: "/private/t/:account/ws/",
 };
 
 export type PublicRoute = keyof typeof publicRoutes;

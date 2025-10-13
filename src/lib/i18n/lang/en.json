@@ -14,7 +14,12 @@
     "auth/user_not_found": "We couldn't find your account",
     "auth/invalid_credentials": "Your credentials details need another look",
     "auth/create_account_failed": "Something went wrong while setting up your account. Let's give it another try.",
-    "auth/create_account_success": "Your leadership journey begins now. Your account is ready to go."
+    "auth/create_account_success": "Your leadership journey begins now. Your account is ready to go.",
+
+    "workspace/not_found": "We couldn't find your workspace",
+    "workspace/name_exists": "Looks like this workspace name is already being used",
+    "workspace/create_failed": "We hit a snag while creating your workspace. Let's try that again.",
+    "workspace/create_success": "Your workspace is all set up. now let's prepare your leaders."
   },
 
   "lang": {
@@ -71,5 +76,22 @@
   "onboarding": {
     "title": "Lead it. Live it.",
     "description": "Your journey as a leader starts here. Lead with vision, live with purpose."
+  },
+  "workspace": {
+    "title": "Lead Together",
+    "description": "Spaces where your groups align, grow, and lead with purpose.",
+    "no-workspaces": "No workspaces yet, add one to get started",
+    "search-box": "Type something to search in your workspaces...",
+    "submit-button": "Create workspace",
+    "cancel-button": "Cancel",
+    "menu-list": {
+      "title": "Workspaces",
+      "subtitle": "This are your workspaces of your account"
+    },
+    "types": {
+      "business": { "label": "For business", "placeholder": "Lead with vision, purpose and strategy" },
+      "education": { "label": "For education", "placeholder": "Focus on learning, simplify the path" },
+      "nonprofit": { "label": "For nonprofits", "placeholder": "Empower your mission with structure" }
+    }
   }
 }

@@ -13,7 +13,7 @@ interface Props {
 /* prettier-ignore */
 export const MenuLink = ({ children, route, icon, className }: Props) => {
   const pathname = usePathname();
-  const segments = route.split("/ws/")[1];
+  const segments = route.split("/t/")[1];
   const isSelected = pathname.includes(segments);
 
   return (
@@ -21,9 +21,8 @@ export const MenuLink = ({ children, route, icon, className }: Props) => {
       href={route}
       icon={icon}
       place="start"
-      align="start"
       variant="ghost"
-      className={cn("hover:bg-secondary h-9 w-full", isSelected && "bg-primary/80 text-primary-foreground border-border border", className )}>
+      className={cn("h-9 w-full justify-start text-secondary-foreground", isSelected && "bg-primary/80 text-primary-foreground", !isSelected && "hover:bg-secondary", className )}>
       {children}
     </Navlink>
   );
