@@ -14,7 +14,7 @@ interface Props {
 export const MenuLink = ({ children, route, icon, className }: Props) => {
   const pathname = usePathname();
   const segments = route.split("/t/")[1];
-  const isSelected = pathname.includes(segments);
+  const isSelected = pathname.includes(segments)
 
   return (
     <Navlink

@@ -128,17 +128,17 @@ model Subscriptions {
 }
 
 model Workspaces {
-  id             String        @id @default(cuid())
+  id             String   @id @default(cuid())
   name           String
   icon           String
   color          String
-  type           WorkspaceType @default(EDUCATION)
+  type           String   @default("education")
   status         String
   members        String[]
   organizationId String
   userId         String
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   Organization Organization @relation(fields: [organizationId], references: [id])
   user         User         @relation(fields: [userId], references: [id])
@@ -169,10 +169,4 @@ enum BillingCycle {
   MONTHLY
   QUARTERLY
   ANNUAL
-}
-
-enum WorkspaceType {
-  BUSINESS
-  EDUCATION
-  NONPROFIT
 }

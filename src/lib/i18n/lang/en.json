@@ -79,7 +79,7 @@
   },
   "workspace": {
     "title": "Lead Together",
-    "description": "Spaces where your groups align, grow, and lead with purpose.",
+    "description": "Spaces where your groups can grow and lead with purpose.",
     "no-workspaces": "No workspaces yet, add one to get started",
     "search-box": "Type something to search in your workspaces...",
     "submit-button": "Create workspace",
@@ -89,9 +89,18 @@
       "subtitle": "This are your workspaces of your account"
     },
     "types": {
-      "business": { "label": "For business", "placeholder": "Lead with vision, purpose and strategy" },
-      "education": { "label": "For education", "placeholder": "Focus on learning, simplify the path" },
-      "nonprofit": { "label": "For nonprofits", "placeholder": "Empower your mission with structure" }
+      "business": { "label": "For business", "placeholder": "Lead with vision, grow with purpose." },
+      "education": { "label": "For education", "placeholder": "Create learning spaces that inspire and evolve." },
+      "nonprofit": { "label": "For nonprofits", "placeholder": "Empower your mission, one step at a time." }
+    },
+    "form": {
+      "name": { "label": "Name", "placeholder": "Name the space where your group thrives" },
+      "description": { "label": "Description", "placeholder": "Add a short description for your this workspace" },
+      "ws-type": "What kind of workspace are you creating?",
+      "organization": {
+        "label": "Where do you lead from?",
+        "placeholder": "Pick the organization or account for this workspace"
+      }
     }
   }
 }
