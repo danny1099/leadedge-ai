@@ -23,8 +23,8 @@ export const ctaVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground",
-        destructive: "bg-destructive text-white focus-visible:ring-destructive/20",
+        default: "bg-primary/80 text-primary-foreground",
+        destructive: "bg-destructive/80 text-white focus-visible:ring-destructive/20",
         outline: "border border-border bg-background",
         secondary: "bg-secondary text-secondary-foreground",
         accent: "bg-accent text-accent-foreground",
@@ -175,8 +175,8 @@ export const sheetContainerVariants = cva(
 export const dividerVariants = cva("bg-border", {
   variants: {
     type: {
-      vertical: "w-[1px] h-6",
-      horizontal: "h-[1px] w-6",
+      vertical: "w-[1px] h-full",
+      horizontal: "h-[1px] w-full",
     },
   },
   defaultVariants: {

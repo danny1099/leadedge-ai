@@ -90,9 +90,9 @@
     "menu-list": {
       "title": "Workspaces",
       "subtitle": "This are your workspaces of your account",
-      "edit-workspace": "Edit workspace",
-      "manage-members": "Manage members",
-      "delete-workspace": "Delete workspace"
+      "edit-workspace": "Edit",
+      "manage-members": "Members",
+      "delete-workspace": "Delete"
     },
     "types": {
       "business": { "label": "For business", "placeholder": "Lead with vision, grow with purpose." },
