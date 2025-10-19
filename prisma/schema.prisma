@@ -134,6 +134,7 @@ model Workspaces {
   color          String
   type           String   @default("education")
   status         String
+  description    String?
   members        String[]
   organizationId String
   userId         String

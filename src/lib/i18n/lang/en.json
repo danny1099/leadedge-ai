@@ -19,7 +19,9 @@
     "workspace/not_found": "We couldn't find your workspace",
     "workspace/name_exists": "Looks like this workspace name is already being used",
     "workspace/create_failed": "We hit a snag while creating your workspace. Let's try that again.",
-    "workspace/create_success": "Your workspace is all set up. now let's prepare your leaders."
+    "workspace/create_success": "Your workspace is all set up. now let's prepare your leaders.",
+    "workspace/update_failed": "We hit a snag while updating your workspace. Let's try that again.",
+    "workspace/update_success": "Your workspace has been updated successfully."
   },
 
   "lang": {
@@ -82,11 +84,15 @@
     "description": "Spaces where your groups can grow and lead with purpose.",
     "no-workspaces": "No workspaces yet, add one to get started",
     "search-box": "Type something to search in your workspaces...",
-    "submit-button": "Create workspace",
+    "add-button": "Create workspace",
+    "edit-button": "Update workspace",
     "cancel-button": "Cancel",
     "menu-list": {
       "title": "Workspaces",
-      "subtitle": "This are your workspaces of your account"
+      "subtitle": "This are your workspaces of your account",
+      "edit-workspace": "Edit workspace",
+      "manage-members": "Manage members",
+      "delete-workspace": "Delete workspace"
     },
     "types": {
       "business": { "label": "For business", "placeholder": "Lead with vision, grow with purpose." },

@@ -23,7 +23,7 @@ export const IconAndColorPicker = ({ value, onChange, className }: Props) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" icon={selected.icon as IconName} size="icon" className={cn("shrink-0 hover:bg-secondary hover:text-tertiary", getColors(selected.color).base, className)} />
+        <Button variant="ghost" icon={selected.icon as IconName} size="icon" className={cn("shrink-0", getColors(selected.color).base, className)} />
       </PopoverTrigger>
       <PopoverContent className="w-74 flex flex-col max-sm:w-68" align="start">
         <div className="flex flex-col rounded-sm px-2 py-1">

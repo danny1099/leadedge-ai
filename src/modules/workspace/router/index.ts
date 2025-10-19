@@ -1,7 +1,7 @@
 import z from "zod";
 import { procedure, router } from "@/trpc/init";
 import { tryCatch } from "@/shared/utils";
-import { workspaceSchema } from "@/modules/workspace/schema";
+import { workspaceSchema, workspaceWithId } from "@/modules/workspace/schema";
 import type { Workspace } from "@/modules/workspace/types";
 
 /* common parameters for searching data by id */
@@ -58,6 +58,8 @@ export const workspaceRouter = router({
           name,
           icon,
           color,
+          type,
+          description,
           status: "active",
           organizationId,
           userId: ctx.user?.id,
@@ -72,6 +74,46 @@ export const workspaceRouter = router({
     return {
       result: data as Workspace,
       message: "workspace/create_success",
+      status: "success",
+    };
+  }),
+
+  update: procedure.input(workspaceWithId).mutation<TRPCResponse<Workspace>>(async ({ ctx, input }) => {
+    const { id, name, avatar, type, description } = input;
+    const [icon, color] = avatar.split("-");
+
+    /* check if user have a session valid */
+    if (!ctx.user?.id) return { result: null, message: "auth/invalid_session", status: "error" };
+
+    /* check if workspace already exists with name */
+    const workspace = await ctx.db.workspaces.findFirst({ where: { id } });
+    if (!workspace) return { result: null, message: "workspace/not_found", status: "error" };
+
+    /* check if another workspace already exists with the same name for this account (excluding current workspace) */
+    const duplicateWorkspace = await ctx.db.workspaces.findFirst({
+      where: { name, organizationId: workspace.organizationId, NOT: { id } },
+    });
+    if (duplicateWorkspace) return { result: null, message: "workspace/name_exists", status: "error" };
+
+    const { data, error } = await tryCatch(
+      ctx.db.workspaces.update({
+        where: { id },
+        data: {
+          name,
+          icon,
+          color,
+          type,
+          description,
+          updatedAt: new Date(),
+        },
+      })
+    );
+    /* handle error if any occurs while creating workspace */
+    if (error) return { result: null, message: "workspace/update_failed", status: "error" };
+
+    return {
+      result: data as Workspace,
+      message: "workspace/update_success",
       status: "success",
     };
   }),

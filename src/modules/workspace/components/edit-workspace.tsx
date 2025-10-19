@@ -8,11 +8,12 @@ import { getPrivateRoute } from "@/config/routes";
 import { useToast } from "@/shared/hooks";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/components/form";
 import { Button, Cancel, Input, IconAndColorPicker, Textarea, P } from "@/shared/components";
-import { workspaceSchema, type WorkspaceSchema } from "@/modules/workspace/schema";
+import { workspaceWithId, type WorkspaceWithId } from "@/modules/workspace/schema";
 import { TypePicker, OrganizationField } from "@/modules/workspace/components";
+import type { Workspace } from "@/modules/workspace/types";
 import { trpc, useUtils } from "@/trpc/client";
 
-export const NewWorkspaceForm = () => {
+export const EditWorkspaceForm = (ws: Workspace) => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const params = useParams();
@@ -25,25 +26,26 @@ export const NewWorkspaceForm = () => {
 
   /* use trpc api services and utils to request and refresh data */
   const utils = useUtils();
-  const api = trpc.workspace.create.useMutation({
+  const api = trpc.workspace.update.useMutation({
     onSuccess: () => utils.workspace.getAllWorkspaces.invalidate(),
   });
 
-  const form = useForm<WorkspaceSchema>({
-    resolver: zodResolver(workspaceSchema),
+  const form = useForm<WorkspaceWithId>({
+    resolver: zodResolver(workspaceWithId),
     defaultValues: {
-      name: "",
-      avatar: "ia-black",
-      type: "education",
-      description: "",
-      status: "active",
-      organizationId: "",
+      id: ws.id,
+      name: ws.name,
+      avatar: ws.icon + "-" + ws.color,
+      type: ws.type,
+      description: ws.description || "",
+      status: ws.status,
+      organizationId: ws.organizationId,
     },
   });
 
   const { formState } = form;
 
-  const onSubmit = async (values: WorkspaceSchema) => {
+  const onSubmit = async (values: WorkspaceWithId) => {
     startTransition(async () => {
       const { result, message, status } = await api.mutateAsync(values);
 
@@ -53,7 +55,7 @@ export const NewWorkspaceForm = () => {
         return;
       }
 
-      /* handle success if account is created successfully redirect to overview */
+      /* handle success if workspace is updated successfully redirect to overview */
       toast(message as string, "success");
       router.push(`${redirectTo}/${result.id}`, { scroll: false });
     });
@@ -61,7 +63,7 @@ export const NewWorkspaceForm = () => {
 
   const onCancel = () => {
     if (form.formState.isDirty) form.reset();
-    router.push(`${redirectTo}/`, { scroll: false });
+    router.push(`${redirectTo}/${ws.id}`, { scroll: false });
   };
 
   return (
@@ -123,7 +125,7 @@ export const NewWorkspaceForm = () => {
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormLabel>{t("form.organization.label")}</FormLabel>
-                    <OrganizationField onValueChange={field.onChange} value={field.value as string} />
+                    <OrganizationField onValueChange={field.onChange} value={field.value as string} disabled />
                     {formState.errors["organizationId"] && <FormMessage />}
                   </FormItem>
                 )}
@@ -154,7 +156,7 @@ export const NewWorkspaceForm = () => {
 
           <div className="flex w-full flex-col gap-4 md:flex-row-reverse md:p-4">
             <Button type="submit" icon="save" isLoading={isPending} className="w-full md:w-fit">
-              {t("add-button")}
+              {t("edit-button")}
             </Button>
             <Cancel className="w-full md:w-32" onClick={onCancel}>
               {t("cancel-button")}

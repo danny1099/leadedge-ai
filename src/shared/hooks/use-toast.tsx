@@ -6,11 +6,11 @@ import { cn } from "@/shared/utils";
 export type ToastType = "success" | "error" | "warning" | "info" | "loading";
 
 const toastType = {
-  success: { icon: "check" as IconName, className: "bg-green-200 text-green-700" },
-  error: { icon: "close" as IconName, className: "bg-red-200 text-red-700" },
-  warning: { icon: "warning" as IconName, className: "bg-amber-200 text-amber-800" },
-  info: { icon: "info" as IconName, className: "bg-blue-200 text-blue-700" },
-  loading: { icon: "refresh" as IconName, className: "bg-violet-200 text-violet-700 animate-spin" },
+  success: { icon: "check" as IconName, className: "bg-green-200 text-green-600" },
+  error: { icon: "close" as IconName, className: "bg-red-200 text-red-600" },
+  warning: { icon: "warning" as IconName, className: "bg-amber-200 text-amber-700" },
+  info: { icon: "info" as IconName, className: "bg-blue-200 text-blue-600" },
+  loading: { icon: "refresh" as IconName, className: "bg-violet-200 text-violet-600 animate-spin" },
 };
 
 /* prettier-ignore */
